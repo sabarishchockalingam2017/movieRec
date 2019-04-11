@@ -24,23 +24,46 @@
 
 **Success criteria**: The model's efficiency will measured by inputting test data and measuring the error in the predicted rating. Success of the project overall will be measured by how satisfied users are with recommendations.
 
-## Backlog
-### Theme: Create a user-friendly Interface
-#### Epic: User Input List
-##### Story: Create List (1 pt)
-##### Story: Autocomplete Title (1 pt)
-##### Story: Rating (0 pts)
-#### Epic: Return Recommendation
-##### Story: Returns top 5 recommendations from model (1 pt)
-##### Icebox: Add IMBD url and picture of recommended movie.
+## Planning
+### Theme 1: Create a user-friendly Interface
+#### Epic 1: User Input List
+##### Story 1: Create User Input Boxes (Movie Name and their Rating) (1 pt)
+##### Story 2: Match Input to Movie in Dataset (1 pt)
+##### Story 3: Autocomplete Title Input (1 pt)
+#### Epic 2: Return Recommendation
+##### Story 1: Returns top 5 recommendations from model (1 pt)
+##### Story 2: Add IMBD url and picture of recommended movie.
 
-### Theme: Model
-#### Epic: Build Recommender
-##### Story: Import Data (1 pt)
-##### Story: Build and Train Model (1 pt)
-#### Epic: Test Recommender
-##### Story: Create Test Data set (0 pt)
-##### Story: Calculate accuracy measure (1 pt)
+### Theme 2: Model
+#### Epic 1: Build Recommender
+##### Story 1: Import Data and perform EDA (1 pt)
+##### Story 2: Create Train and Test Data set (0 pt)
+##### Story 3: Build and Train Model (2 pt)
+#### Epic 2: Test Recommender
+##### Story 1: Test Model and calculate accuracy measure (1 pt)
+
+## Backlog
+1) **2.1.1**: Import Data and perform EDA (1 pt)
+
+2) **2.1.2**: Create Train and Test Data set (0 pt)
+
+3) **2.1.3**: Build and Train Model (2 pt)
+
+4) **2.2.1**: Test Model and calculate accuracy measure (1 pt)
+
+5) **1.1.1**: Create User Input Boxes (Movie Name and their Rating) (1 pt)
+
+6) **1.1.2**: Match Input to Movie in Dataset (1 pt)
+
+7) **1.2.1**: Returns top 5 recommendations from model (1 pt)
+
+## Icebox
+* **1.1.3**: Autocomplete Title Input (1 pt)
+
+* **1.2.2**: Add IMBD url and picture of recommended movie (1 pt)
+
+
+
 
 ## Repo structure 
 

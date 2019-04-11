@@ -34,13 +34,16 @@
 ##### Story 1: Returns top 5 recommendations from model (1 pt)
 ##### Story 2: Add IMBD url and picture of recommended movie.
 
-### Theme 2: Model
-#### Epic 1: Build Recommender
+### Theme 2: Modelling
+#### Epic 1: Build Collaborative Filtered Recommender
 ##### Story 1: Import Data and perform EDA (1 pt)
 ##### Story 2: Create Train and Test Data set (0 pt)
 ##### Story 3: Build and Train Model (2 pt)
-#### Epic 2: Test Recommender
+#### Epic 2: Test Collaborative Filtered Recommender
 ##### Story 1: Test Model and calculate accuracy measure (1 pt)
+#### Epic 3: Build Popularity Based Recommender 
+##### Story 1: List most popular movies (0 pt)
+##### Story 2: Add option for user to choose genres (1 pt)
 
 ## Backlog
 1) **2.1.1**: Import Data and perform EDA (1 pt)
@@ -61,6 +64,10 @@
 * **1.1.3**: Autocomplete Title Input (1 pt)
 
 * **1.2.2**: Add IMBD url and picture of recommended movie (1 pt)
+
+* **2.3.1**: List most popular movies (0 pt)
+
+* **2.3.2**: Add option for user to choose genres (1 pt)
 
 
 

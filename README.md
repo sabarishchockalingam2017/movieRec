@@ -18,22 +18,29 @@
 
 ## Project Charter 
 
-**Vision**: To enable animals everywhere to enjoy music just for them. 
+**Vision**: Recommend movies to users which they will enjoy. 
 
-**Mission**: Enable users to add songs that they like and produce new song recommendations based on their entries.
+**Mission**: Build a recommendation system which prompts users to enter movies they like and returns similar movies they most probably will like.
 
-**Success criteria**: Users play 80% of recommended songs more than once. 
-
-
-_Note_: Project charters should actually be more detailed than this! But this is where the charter belongs.  
-
+**Success criteria**: The model's efficiency will measured by inputting test data and measuring the error in the predicted rating. Success of the project overall will be measured by how satisfied users are with recommendations.
 
 ## Backlog
+### Theme: Create a user-friendly Interface
+#### Epic: User Input List
+##### Story: Create List (1 pt)
+##### Story: Autocomplete Title (1 pt)
+##### Story: Rating (0 pts)
+#### Epic: Return Recommendation
+##### Story: Returns top 5 recommendations from model (1 pt)
+##### Icebox: Add IMBD url and picture of recommended movie.
 
-**Themes**: 
-
-**Epics**: 
-
+### Theme: Model
+#### Epic: Build Recommender
+##### Story: Import Data (1 pt)
+##### Story: Build and Train Model (1 pt)
+#### Epic: Test Recommender
+##### Story: Create Test Data set (0 pt)
+##### Story: Calculate accuracy measure (1 pt)
 
 ## Repo structure 
 

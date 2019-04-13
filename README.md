@@ -37,13 +37,13 @@
 ##### Story 1: Returns top 5 recommendations from model. (1 pt)
 ##### Story 2: Add IMBD url and picture of recommended movie.
 ##### Story 3: Add option to rate recommendations. (4 pts)
-##### Story 4: Store recommendation in RDS. (1 pt)
+##### Story 4: Store recommendations in RDS. (1 pt)
 #### Epic 3: Deployment
-##### Story 1: Deploy app via Flask (AWS). (2 pts)
+##### Story 1: Deploy app via Flask (AWS). (4 pts)
 
 ### Theme 2: Meaningful Recommendations
 #### Epic 1: Build Collaborative Filtered Recommender
-##### Story 1: Import Data and perform EDA. (1 pt)
+##### Story 1: Import Data and perform EDA. (2 pt)
 ##### Story 2: Create Train and Test Data set. (0 pt)
 ##### Story 3: Build and Train Model. (2 pt)
 #### Epic 2: Test Collaborative Filtered Recommender
@@ -53,39 +53,59 @@
 ##### Story 1: List most popular movies. (0 pt)
 ##### Story 2: Add option for user to choose genres. (1 pt)
 #### Epic 4: Store necessary items online
-##### Story 1: Store model and data set in S3 for the app to be able to access. (2 pts)
+##### Story 1: Store model and data set in S3 to be accessed by app. (2 pts)
 
 ### Theme 3: Quality Control
 #### Epic 1: Logging, version control, testing, reproducibility and documentation
-##### Story 1: Add logging to be able to troubleshoot advanced errors. (1 pt)
-##### Story 2: Create unit tests and model reproducibility tests. (8 pt)
+##### Story 1: Add logging to facilitate troubleshooting errors. (2 pt)
+##### Story 2: Create unit tests and model reproducibility tests. (8 pts)
 ##### Story 3: Create Github repository for version control. (1 pt)
-##### Story 4: Document code for future and team members' reference (8 pt)
+##### Story 4: Document code for future and team members' reference (8 pts)
 
 
 ## Backlog
-1) **2.1.1**: Import Data and perform EDA (1 pt) (PLANNED)
+1) **3.1.3**: Create Github repository for version control. (1 pt) (COMPLETED)
 
-2) **2.1.2**: Create Train and Test Data set (0 pt) (PLANNED)
+2) **2.1.1**: Import Data and perform EDA. (2 pt) (PLANNED)
 
-3) **2.1.3**: Build and Train Model (2 pt) (PLANNED)
+2) **2.1.2**: Create Train and Test Data set. (0 pt) (PLANNED)
 
-4) **2.2.1**: Test Model and calculate accuracy measure (1 pt) (PLANNED)
+3) **2.1.3**: Build and Train Model. (2 pt) (PLANNED)
 
-5) **1.1.1**: Create User Input Boxes (Movie Name and their Rating) (1 pt)
+4) **2.2.1**: Test Model and calculate accuracy measure. (1 pt) (PLANNED)
 
-6) **1.1.2**: Match Input to Movie in Dataset (1 pt)
+5) **2.2.2**: Optimize and tune model to achieve the AUC success threshold. (4 pt)
 
-7) **1.2.1**: Returns top 5 recommendations from model (1 pt)
+6) **1.1.1**: Create User Input Boxes (Movie Name and their Rating). (1 pt)
+
+7) **1.1.2**: Match Input to Movie in Dataset. (1 pt)
+
+8) **1.2.1**: Returns top 5 recommendations from model. (1 pt)
+
+9) **1.2.3**: Add option to rate recommendations. (4 pts)
+
+10) **1.3.1**: Deploy app via Flask (AWS). (4 pts)
+ 
+11) **1.1.4**: Store user input in RDS. (1 pt)
+
+12) **1.2.4**: Store recommendations in RDS. (1 pt)
+
+13) **2.4.1**: Store model and data set in S3 to be accessed by app. (2 pts)
+
+14) **3.1.1**: Add logging to facilitate troubleshooting errors. (2 pt)
 
 ## Icebox
 * **1.1.3**: Autocomplete Title Input (1 pt)
 
-* **1.2.2**: Add IMBD url and picture of recommended movie (1 pt)
+* **1.2.2**: Add IMBD url and picture of recommended movie. (1 pt)
 
-* **2.3.1**: List most popular movies (0 pt)
+* **2.3.1**: List most popular movies. (0 pt)
 
-* **2.3.2**: Add option for user to choose genres (1 pt)
+* **2.3.2**: Add option for user to choose genres. (1 pt)
+
+* **3.1.2**: Create unit tests and model reproducibility tests. (8 pts)
+
+* **3.1.4**: Document code for future and team members' reference (8 pts)
 
 
 

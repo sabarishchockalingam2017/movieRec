@@ -17,3 +17,8 @@ DOWNLOADURL =  "http://files.grouplens.org/datasets/movielens/ml-latest.zip"
 EXTRACT_FOLDER = re.search("(movielens/)(.*)(.zip)",DOWNLOADURL).group(2)
 
 UPLOAD_BUCKET = "movierecmsia423"
+
+# Database connection config
+SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/sentiment.db'
+SQLALCHEMY_TRACK_MODIFICATIONS = True
+SQLALCHEMY_ECHO = False  # If true, SQL for queries made will be printed

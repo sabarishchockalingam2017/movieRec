@@ -1,5 +1,6 @@
 from os import path
 import re
+import os
 
 # Getting the parent directory of this file. That will function as the project home.
 PROJECT_HOME = path.dirname(path.dirname(path.abspath(__file__)))
@@ -19,6 +20,14 @@ EXTRACT_FOLDER = re.search("(movielens/)(.*)(.zip)",DOWNLOADURL).group(2)
 UPLOAD_BUCKET = "movierecmsia423"
 
 # Database connection config
-SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/sentiment.db'
-SQLALCHEMY_TRACK_MODIFICATIONS = True
+conn_type = "mysql"
+user = os.environ.get("MYSQL_USER")
+password = os.environ.get("MYSQL_PASSWORD")
+host = os.environ.get("MYSQL_HOST")
+port = os.environ.get("MYSQL_PORT")
+
+SQLALCHEMY_DATABASE_URI = "{}://{}:{}@{}:{}/mysql-nw-schockalingam".\
+format(conn_type, user, password, host, port)
+
+SQLALCHEMY_MODIFICATIONS = True
 SQLALCHEMY_ECHO = False  # If true, SQL for queries made will be printed

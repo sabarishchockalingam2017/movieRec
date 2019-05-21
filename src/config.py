@@ -20,7 +20,7 @@ EXTRACT_FOLDER = re.search("(movielens/)(.*)(.zip)",DOWNLOADURL).group(2)
 UPLOAD_BUCKET = "movierecmsia423"
 
 # Database connection config
-conn_type = "mysql"
+conn_type = "mysql+pymysql"
 user = os.environ.get("MYSQL_USER")
 password = os.environ.get("MYSQL_PASSWORD")
 host = os.environ.get("MYSQL_HOST")

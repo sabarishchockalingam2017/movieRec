@@ -17,6 +17,7 @@ DOWNLOADURL =  "http://files.grouplens.org/datasets/movielens/ml-latest.zip"
 
 EXTRACT_FOLDER = re.search("(movielens/)(.*)(.zip)",DOWNLOADURL).group(2)
 
+# upload bucket name for aws s3
 UPLOAD_BUCKET = "movierecmsia423"
 
 # Database connection config

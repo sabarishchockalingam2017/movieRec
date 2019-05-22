@@ -7,6 +7,8 @@ import config
 import logging
 import logging.config
 
+sys.path.append(os.path.abspath(os.path.join('..')))
+
 logging.config.fileConfig(config.LOGGING_CONFIG)
 logger = logging.getLogger('data-downloader')
 

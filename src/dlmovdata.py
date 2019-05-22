@@ -14,11 +14,11 @@ logging.config.fileConfig(config.LOGGING_CONFIG)
 logger = logging.getLogger('data-downloader')
 
 
-def download_data(args):
+def load_data(args):
 	'''Downloads data from movielens website and uploads it to specified aws s3 bucket'''
 	
 	# download movielens data
-	dldir = os.path.join("..","data","mdatadl.zip")
+	dldir = os.path.join(".","data","mdatadl.zip")
 	logger.info("Downloading data") 
 	r = requests.get(config.DOWNLOADURL)
 

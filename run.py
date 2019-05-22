@@ -5,7 +5,7 @@ logger = logging.getLogger("movierec")
 
 #from src.dlmovdata import load_data
 from src.model import create_sqlite_db, create_db
-from config import BUCKET_NAME, SQLALCHEMY_DATABASE_URI, DATABASE_NAME
+from config import BUCKET_NAME, SQLALCHEMY_DATABASE_URI, DATABASE_NAME, UPLOAD_BUCKET
 from src.dlmovdata import load_data
 
 
@@ -17,7 +17,7 @@ if __name__ == '__main__':
     subparsers = parser.add_subparsers()
 
     sub_process = subparsers.add_parser('loadS3')
-    sub_process.add_argument("--bucket", type=str, default=config.UPLOAD_BUCKET, help="Bucket to be copied to")
+    sub_process.add_argument("--bucket", type=str, default=UPLOAD_BUCKET, help="Bucket to be copied to")
     sub_process.set_defaults(func=load_data)
 
     sub_process = subparsers.add_parser('createSqlite')

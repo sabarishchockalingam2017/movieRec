@@ -3,14 +3,14 @@ import re
 import os
 
 # Getting the parent directory of this file. That will function as the project home.
-PROJECT_HOME = path.dirname(path.dirname(path.abspath(__file__)))
+PROJECT_HOME = path.dirname(path.abspath(__file__))
 
 # App config
 APP_NAME = "movierec"
 DEBUG = True
 
 # Logging
-LOGGING_CONFIG = path.join(PROJECT_HOME, 'config','logging','local.conf')
+LOGGING_CONFIG = path.join(PROJECT_HOME,'config','logging','local.conf')
 
 # Download url
 DOWNLOADURL =  "http://files.grouplens.org/datasets/movielens/ml-latest.zip"
@@ -33,7 +33,6 @@ SQLALCHEMY_MODIFICATIONS = True
 SQLALCHEMY_ECHO = False  # If true, SQL for queries made will be printed
 
 DEBUG = True
-LOGGING_CONFIG = "config/logging/local.conf"
 PORT = 9033
 SQLALCHEMY_DATABASE_URI = 'sqlite:///data/msia423.db'
 SQLALCHEMY_TRACK_MODIFICATIONS = True

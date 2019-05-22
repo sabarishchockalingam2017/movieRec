@@ -3,11 +3,12 @@ import os
 import zipfile
 import boto3
 
-import config
 import logging
 import logging.config
+import sys
 
-sys.path.append(os.path.abspath(os.path.join('..')))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import config
 
 logging.config.fileConfig(config.LOGGING_CONFIG)
 logger = logging.getLogger('data-downloader')

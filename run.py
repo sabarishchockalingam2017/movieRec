@@ -1,44 +1,33 @@
-"""Enables the command line execution of multiple modules within src/
-
-This module combines the argparsing of each module within src/ and enables the execution of the corresponding scripts
-so that all module imports can be absolute with respect to the main project directory.
-
-Current commands enabled:
-
-To create a database for Tracks with an initial song:
-
-    `python run.py create --artist="Britney Spears" --title="Radar" --album="Circus"`
-
-To add a song to an already created database:
-
-    `python run.py ingest --artist="Britney Spears" --title="Radar" --album="Circus"`
-"""
 import argparse
 import logging.config
 logging.config.fileConfig("config/logging/local.conf")
-logger = logging.getLogger("run-penny-lane")
+logger = logging.getLogger("movierec")
 
-from src.add_songs import create_db, add_track
+#from src.dlmovdata import load_data
+from src.model import create_sqlite_db, create_db
+from config import BUCKET_NAME, SQLALCHEMY_DATABASE_URI, DATABASE_NAME
+
+
 
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser(description="Run components of the model source code")
+    parser = argparse.ArgumentParser(description="Data processes")
     subparsers = parser.add_subparsers()
 
-    # Sub-parser for creating a database
-    sb_create = subparsers.add_parser("create", description="Create database")
-    sb_create.add_argument("--artist", default="Britney Spears", help="Artist of song to be added")
-    sb_create.add_argument("--title", default="Radar", help="Title of song to be added")
-    sb_create.add_argument("--album", default="Circus", help="Album of song being added.")
-    sb_create.set_defaults(func=create_db)
+    #sub_process = subparsers.add_parser('loadS3')
+    #sub_process.add_argument("--bucket", type=str, default=BUCKET_NAME, help="Bucket to be copied to")
+    #sub_process.set_defaults(func=load_data)
 
-    # Sub-parser for ingesting new data
-    sb_ingest = subparsers.add_parser("ingest", description="Add data to database")
-    sb_ingest.add_argument("--artist", default="Emancipator", help="Artist of song to be added")
-    sb_ingest.add_argument("--title", default="Minor Cause", help="Title of song to be added")
-    sb_ingest.add_argument("--album", default="Dusk to Dawn", help="Album of song being added")
-    sb_ingest.set_defaults(func=add_track)
+    sub_process = subparsers.add_parser('createSqlite')
+    sub_process.add_argument("--engine_string", type=str, default=SQLALCHEMY_DATABASE_URI,
+                             help="Connection uri for SQLALCHEMY")
+    sub_process.set_defaults(func=create_sqlite_db)
+
+    sub_process = subparsers.add_parser('createRDS')
+    sub_process.add_argument("--database", type=str, default=DATABASE_NAME,
+                             help="Database in RDS")
+    sub_process.set_defaults(func=create_db)
 
     args = parser.parse_args()
     args.func(args)

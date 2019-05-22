@@ -1,12 +1,22 @@
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, MetaData, DateTime
-import sqlalchemy as sql
+import sqlalchemy
 
 import logging
 import logging.config
 import config
 import pandas as pd
+
+import argparse
+import sys
+import flask
+import os
+
+from flask_sqlalchemy import SQLAlchemy
+from config import SQLALCHEMY_DATABASE_URI, DATABASE_NAME
+
+sys.path.append(os.path.abspath(os.path.join('..')))
 
 logging.config.fileConfig(config.LOGGING_CONFIG)
 logger = logging.getLogger('movierec-models')
@@ -39,7 +49,18 @@ class Movies(Base):
     return movie_repr % (self.id, self.title,self.year,self.genre)
 
 
-def create_db(engine=None, engine_string=None):
+def create_sqlite_db(args):
+    """Creates an sqlite database with the data models inherited from `Base` .
+    Args:
+        args (argument from user): String defining SQLAlchemy connection URI in the form of
+    Returns:
+        None
+    """
+
+    engine = sqlalchemy.create_engine(args.engine_string)
+    Base.metadata.create_all(engine)
+
+def create_db(args):
   """Creates a database with the data models inherited from `Base` (Ratings and Movies).
 
   Args:
@@ -50,14 +71,32 @@ def create_db(engine=None, engine_string=None):
  Returns:
       None
   """
-  if engine is None and engine_string is None:
-      return ValueError("`engine` or `engine_string` must be provided")
-  elif engine is None:
-      engine = sql.create_engine(engine_string)
+  conn_type = "mysql+pymysql"
+  user = os.environ.get("MYSQL_USER")
+  password = os.environ.get("MYSQL_PASSWORD")
+  host = os.environ.get("MYSQL_HOST")
+  port = os.environ.get("MYSQL_PORT")
+  engine_string = "{}://{}:{}@{}:{}/{}". \
+      format(conn_type, user, password, host, port, DATABASE_NAME)
 
+  engine = sqlalchemy.create_engine(engine_string)
   Base.metadata.create_all(engine)
 
 
-if __name__ == "__main__":
-        
-  create_db(engine_string=config.SQLALCHEMY_DATABASE_URI)
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser(description="Data processes")
+    subparsers = parser.add_subparsers()
+
+    sub_process = subparsers.add_parser('createSqlite')
+    sub_process.add_argument("--database", type=str, default=SQLALCHEMY_DATABASE_URI,
+                             help="Connection uri for SQLALCHEMY")
+    sub_process.set_defaults(func=create_sqlite_db)
+
+    sub_process = subparsers.add_parser('createRDS')
+    sub_process.add_argument("--database", type=str, default=DATABASE_NAME,
+                             help="Database in RDS")
+    sub_process.set_defaults(func=create_db)
+
+    args = parser.parse_args()
+    args.func(args)

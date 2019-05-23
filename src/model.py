@@ -59,6 +59,7 @@ def create_sqlite_db(args):
 
     engine = sqlalchemy.create_engine(args.engine_string)
     Base.metadata.create_all(engine)
+    logger.info("DB file created in data folder.")
 
 def create_db(args):
   """Creates a database with the data models inherited from `Base` (Ratings and Movies).
@@ -81,6 +82,7 @@ def create_db(args):
 
   engine = sqlalchemy.create_engine(engine_string)
   Base.metadata.create_all(engine)
+  logger.info("Tables created in AWS RDS instance.")
 
 
 if __name__ == '__main__':

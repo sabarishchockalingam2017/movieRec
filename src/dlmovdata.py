@@ -14,8 +14,8 @@ logging.config.fileConfig(config.LOGGING_CONFIG)
 logger = logging.getLogger('data-downloader')
 
 
-def load_data(args):
-	'''Downloads data from movielens website and uploads it to specified aws s3 bucket'''
+def download_data(args):
+	'''Downloads data from movielens website. '''
 	
 	# download movielens data
 	dldir = os.path.join(".","data","mdatadl.zip")
@@ -31,6 +31,12 @@ def load_data(args):
 	zip_ref = zipfile.ZipFile(dldir, 'r')
 	zip_ref.extractall(unzipdir)
 	zip_ref.close()
+
+	logger.info("Files unzipped.")
+
+
+def load_data(args):
+	'''Uploads downloaded data to specified AWS S# bucket'''
 
 	moviesfile = os.path.join("..","data",config.EXTRACT_FOLDER,"movies.csv")
 	ratingsfile = os.path.join("..","data",config.EXTRACT_FOLDER,"ratings.csv")

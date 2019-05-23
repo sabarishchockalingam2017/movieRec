@@ -11,7 +11,8 @@
     + [With `conda`](#with-conda)
   * [2. Configure Flask app](#2-configure-flask-app)
   * [3. Initialize the database](#3-initialize-the-database)
-  * [4. Run the application](#4-run-the-application)
+  * [4. Download and upload data ](#4-download-and-upload-data)
+  * [5. Run the application](#5-run-the-application)
 - [Testing](#testing)
 
 <!-- tocstop -->
@@ -226,17 +227,23 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/tracks.db'  # URI for database that co
  
  `python run.py createSqlite`
 
- To download data into your s3 bucket run the following command:
+### 4. Download and upload data
+
+ To download data into the data folder run:
+  
+ `python run.py downloaddata`
+ 
+ To upload from the data folder to your AWS s3 bucket run:
  
  `python run.py loadS3 --bucket=<bucketname>`
  
-### 4. Run the application 
+### 5. Run the application 
  
  ```bash
  python app.py 
  ```
 
-### 5. Interact with the application 
+### 6. Interact with the application 
 
 Go to [http://127.0.0.1:3000/]( http://127.0.0.1:3000/) to interact with the current version of hte app. 
 

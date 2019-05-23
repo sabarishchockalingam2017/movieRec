@@ -178,9 +178,9 @@ The `requirements.txt` file contains the packages required to run the model code
 ```bash
 pip install virtualenv
 
-virtualenv pennylane
+virtualenv movierec
 
-source pennylane/bin/activate
+source movierec/bin/activate
 
 pip install -r requirements.txt
 
@@ -188,8 +188,8 @@ pip install -r requirements.txt
 #### With `conda`
 
 ```bash
-conda create -n pennylane python=3.7
-conda activate pennylane
+conda create -n movierec python=3.7
+conda activate movierec
 pip install -r requirements.txt
 
 ```
@@ -209,15 +209,27 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/tracks.db'  # URI for database that co
 
 ### 3. Initialize the database 
 
-To create the database in the location configured in `config.py` with one initial song, run: 
+ To create the database in an AWS RDS instance run the following command: 
 
-`python run.py create --artist=<ARTIST> --title=<TITLE> --album=<ALBUM>`
+`python run.py createRDS`
 
-To add additional songs:
+ The the following RDS information must be entered into a '.mysqlconfig' file in the root directory '~/'
 
-`python run.py ingest --artist=<ARTIST> --title=<TITLE> --album=<ALBUM>`
+ ```bash
+ export MYSQL_USER=
+ export MYSQL_PASSWORD=
+ export MYSQL_HOST=
+ export MYSQL_PORT=
+ ```
+ 
+ To create a local db file in the data folder run the following command:
+ 
+ `python run.py createSqlite`
 
-
+ To download data into your s3 bucket run the following command:
+ 
+ `python run.py loadS3 --bucket=<bucketname>`
+ 
 ### 4. Run the application 
  
  ```bash

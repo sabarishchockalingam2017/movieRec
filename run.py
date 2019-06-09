@@ -7,8 +7,11 @@ logger = logging.getLogger("movierec")
 from src.model import create_sqlite_db, create_db
 from config import BUCKET_NAME, SQLALCHEMY_DATABASE_URI, DATABASE_NAME, UPLOAD_BUCKET
 from src.dlmovdata import download_data, load_data
+from app.app import app
 
 
+def run_app(args):
+    app.run(debug=app.config["DEBUG"], port=app.config["PORT"], host=app.config["HOST"])
 
 
 if __name__ == '__main__':
@@ -32,6 +35,9 @@ if __name__ == '__main__':
     sub_process.add_argument("--database", type=str, default=DATABASE_NAME,
                              help="Database in RDS")
     sub_process.set_defaults(func=create_db)
+
+    sb_run = subparsers.add_parser("app", description="Run Flask app")
+    sb_run.set_defaults(func=run_app)
 
     args = parser.parse_args()
     args.func(args)

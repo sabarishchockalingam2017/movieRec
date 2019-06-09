@@ -1,9 +1,9 @@
 DEBUG = True
 LOGGING_CONFIG = "config/logging/local.conf"
 PORT = 3000
-APP_NAME = "penny-lane"
-SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/tracks.db'
+APP_NAME = "movieRec"
+SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/msia423.db'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
-HOST = "127.0.0.2"
+HOST = "0.0.0.0"
 SQLALCHEMY_ECHO = False  # If true, SQL for queries made will be printed
 MAX_ROWS_SHOW = 100

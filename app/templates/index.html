@@ -15,24 +15,31 @@
          <thead>
             <tr>
                <th>Movie</th>
-               <th>Your Rating</th>
+               <th>Rating</th>
             </tr>
          </thead>
 
          <tbody>
-            {% for movies in movies %}
+            {% for input in userinput %}
                <tr>
-                   <td>{{ movies.title }}</td>
-                   <td>{{ ratings.rating }}</td>
+                   <td>{{ input.movie }}</td>
+                   <td>{{ input.rating }}</td>
                </tr>
             {% endfor %}
+            <tr>
+              <td>{{usermessage}}</td>
+            </tr>
          </tbody>
       </table>
-      <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <form action="{{ url_for('submit_entry') }}" method=post class=submit-entry>
+      <div> Enter some movies you've seen and what you would rate them </div>
       <dl>
-        <input type=text size=15 name=title placeholder="Movie">
-        <input type=text size=15 name=rating placeholder="Your Rating">
-        <input type=submit value=Add>
+        <input type=text size=15 name=movie placeholder="Movie">
+        <input type=number size=15 name=rating placeholder="Enter Rating 0-5">
+        <input type=submit name=submitbtn value=Add>
+      </dl>
+      <dl>
+        <input type=submit name=submitbtn value=Reset>
       </dl>
     </form>
 

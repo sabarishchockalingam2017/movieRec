@@ -36,7 +36,7 @@ def download_data(args):
 
 
 def load_data(args):
-	'''Uploads downloaded data to specified AWS S# bucket'''
+	'''Uploads downloaded data to specified AWS S# bucket from local data'''
 
 	moviesfile = os.path.join("..","data",config.EXTRACT_FOLDER,"movies.csv")
 	ratingsfile = os.path.join("..","data",config.EXTRACT_FOLDER,"ratings.csv")
@@ -55,3 +55,4 @@ def load_data(args):
 	except Exception as e:
 	  logging.error(e)
 	logger.info("S3 Upload Complete.")    
+

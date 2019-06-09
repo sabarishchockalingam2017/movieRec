@@ -71,3 +71,7 @@ def submit_entry():
             logger.warning("Unable to delete rows, rolling back.")
             return render_template('error.html')
 
+
+
+if __name__ == "__main__":
+    app.run(debug=app.config["DEBUG"], port=app.config["PORT"], host=app.config["HOST"])

@@ -17,8 +17,14 @@ DOWNLOADURL =  "http://files.grouplens.org/datasets/movielens/ml-latest-small.zi
 
 EXTRACT_FOLDER = re.search("(movielens/)(.*)(.zip)",DOWNLOADURL).group(2)
 
+# download bucket anem for aes s3
+DOWNLOAD_BUCKET = "movierecmsia423"
+
 # upload bucket name for aws s3
 UPLOAD_BUCKET = "movierecmsia423"
+
+S3_MOVIES = 's3://'+UPLOAD_BUCKET+'/ml-data/movies.csv'
+S3_RATINGS = 's3://'+UPLOAD_BUCKET+'/ml-data/ratings.csv'
 
 # Database connection config
 # conn_type = "mysql+pymysql"

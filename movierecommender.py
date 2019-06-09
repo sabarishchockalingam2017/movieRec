@@ -12,7 +12,7 @@ logging.config.fileConfig("config/logging/local.conf")
 
 
 class MovieRecommender:
-    def __init__(self, model_config, debug=False):
+    def __init__(self, model_config="config/test_model_config.yml", debug=False):
 
         # Set up logger and put in debug mode if debug = True
         self.logger = logging.getLogger("movierec-score")

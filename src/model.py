@@ -23,6 +23,17 @@ logger = logging.getLogger('movierec-models')
 
 Base = declarative_base()
 
+class UserInput(Base):
+        """A database model to hold ratings """
+        __tablename__ = 'userinput'
+        id = Column(Integer, primary_key=True)
+        movie = Column(String(100), unique=False, nullable=False)
+        rating = Column(Integer, unique=False, nullable=False)
+
+        def __repr__(self):
+          rating_repr = "<UserInput(id='%s', movie=%s,rating=%d)>"
+          return rating_repr % (self.id, self.movie,self.rating)
+
 class Ratings(Base):
         """A database model to hold ratings """
         __tablename__ = 'ratings'

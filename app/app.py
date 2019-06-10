@@ -6,6 +6,8 @@ from flask import Flask
 from src.add_movies import UserInput, _truncate_userinput
 from flask_sqlalchemy import SQLAlchemy
 import os
+import sqlalchemy as sql
+import movierecommender as mr
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -22,6 +24,7 @@ logger.debug('Test log')
 # Initialize the database
 db = SQLAlchemy(app)
 
+appmr = mr.MovieRecommender()
 
 @app.route('/')
 def index():
@@ -50,6 +53,7 @@ def submit_entry():
 
     :return: redirect to index page
     """
+    # user adding input
     if request.form['submitbtn'] == "Add":
         try:
             userinput1 = UserInput(movie=request.form['movie'], rating=request.form['rating'])
@@ -60,6 +64,7 @@ def submit_entry():
         except:
             logger.warning("Not able to display tracks, error page returned")
             return render_template('error.html')
+    # user resetting input
     elif request.form['submitbtn'] == "Reset":
         try:
             ndel = db.session.query(UserInput).delete()

@@ -7,6 +7,7 @@ import pandas as pd
 import pickle
 from config import S3_MOVIES, S3_RATINGS
 import s3fs
+import src.process_data as proda
 
 logging.config.fileConfig("config/logging/local.conf")
 
@@ -27,19 +28,20 @@ class MovieRecommender:
         self.logger.info("Configuration file loaded from %s", model_config)
         self.config = config
 
-        # getting raw data from s3 bucket
-        self.rawmovies = pd.read_csv(S3_MOVIES)
-        self.rawratings = pd.read_csv(S3_RATINGS)
+        # getting data from s3 bucket
+        self.movies = pd.read_csv(S3_MOVIES)
+        self.ratings = pd.read_csv(S3_RATINGS)
 
+        self.movies = proda.procmovies(self.movies)
        
-    def run(self, data):
-        """Predicts song popularity for the input data
+    def run(self,userinp):
+        """Predicts Movie Recommendation
 
         Args:
             data (:py:class:`pandas.DataFrame`): DataFrame containing the data inputs for scoring
 
         Returns:
-            results (:py:class:`numpy.Array`): Array of predictions of song popularity
+            results (:py:class:`numpy.Array`): Top 5 movie recommendations
 
         """
         print('ran')

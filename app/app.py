@@ -88,8 +88,9 @@ def submit_entry():
             recout = appmr.run(userinp)
             tables=[recout.to_html(classes='data')]
             titles=recout.columns.values
+            userinput = db.session.query(UserInput).limit(app.config["MAX_ROWS_SHOW"]).all()
             logger.info("displaying recommendations.")
-            return render_template('index.html',tables=tables,titles=titles)
+            return render_template('index.html',tables=tables,titles=titles,userinput=userinput)
         except:
             logger.warning("Not able to display recommendations, error page returned")
             return render_template('error.html')

@@ -7,7 +7,11 @@ from src.add_movies import UserInput, _truncate_userinput
 from flask_sqlalchemy import SQLAlchemy
 import os
 import sqlalchemy as sql
+import sys
+sys.path.append(os.path.abspath(os.path.join('..')))
 import movierecommender as mr
+import src.process_data as proda
+import pandas as pd
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -25,6 +29,8 @@ logger.debug('Test log')
 db = SQLAlchemy(app)
 
 appmr = mr.MovieRecommender()
+recout=pd.DataFrame(columns=['title','genres','year'])
+
 
 @app.route('/')
 def index():
@@ -62,7 +68,7 @@ def submit_entry():
             logger.info("Movie: %s added, rated %s", request.form['movie'], request.form['rating'])
             return redirect(url_for('index'))
         except:
-            logger.warning("Not able to display tracks, error page returned")
+            logger.warning("Not able to display movies, error page returned")
             return render_template('error.html')
     # user resetting input
     elif request.form['submitbtn'] == "Reset":
@@ -75,8 +81,28 @@ def submit_entry():
             db.session.rollback()
             logger.warning("Unable to delete rows, rolling back.")
             return render_template('error.html')
-
-
+    # getting recommendations
+    elif request.form['submitbtn'] == "GetRecommendation":
+        try:
+            userinp=proda.procuserinput(appmr.movies,appmr.ratings)
+            recout = appmr.run(userinp)
+            tables=[recout.to_html(classes='data')]
+            titles=recout.columns.values
+            logger.info("displaying recommendations.")
+            return render_template('index.html',tables=tables,titles=titles)
+        except:
+            logger.warning("Not able to display recommendations, error page returned")
+            return render_template('error.html')
+# @app.route('/recommendations', methods=("POST", "GET"))
+# def html_table():
+#     if request.form['recbtn'] == "Get Recommendation":
+#         try:
+#             userinp=proda.procuserinput(appmr.movies,appmr.ratings)
+#             df = appmr.run(userinp)
+#             return render_template('index.html',  tables=[df.to_html(classes='data')], titles=df.columns.values)
+#         except:
+#             logger.warning("Not able to display movies, error page returned")
+#             return render_template('error.html')
 
 if __name__ == "__main__":
     app.run(debug=app.config["DEBUG"], port=app.config["PORT"], host=app.config["HOST"])

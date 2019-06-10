@@ -8,6 +8,7 @@ import pickle
 from config import S3_MOVIES, S3_RATINGS
 import s3fs
 import src.process_data as proda
+import src.train_model as tm
 
 logging.config.fileConfig("config/logging/local.conf")
 
@@ -44,11 +45,20 @@ class MovieRecommender:
             results (:py:class:`numpy.Array`): Top 5 movie recommendations
 
         """
-        print('ran')
+
+        algo = tm.train_model(self.ratings,userinp)
+        results = tm.makepredictions(algo,self.movies,userinp)
+        return results
+
+        
 
 
 def run_movierecommender(args):
-    print('ran')
+    userinp = procuserinput()
+    movierecinst = MovieRecommender()
+    results = movierecinst.run(userinp)
+    results.to_csv(args.output)
+
 
 
 if __name__ == "__main__":

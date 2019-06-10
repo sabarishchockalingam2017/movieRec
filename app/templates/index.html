@@ -40,8 +40,14 @@
       </dl>
       <dl>
         <input type=submit name=submitbtn value=Reset>
+        <input type=submit name=submitbtn value=GetRecommendation>
       </dl>
     </form>
-
+    <div>
+      {% for table in tables %}
+                  {{titles[loop.index]}}
+                  {{ table|safe }}
+      {% endfor %}
+    </div>
 </body>
 </html>

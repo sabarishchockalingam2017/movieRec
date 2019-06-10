@@ -31,7 +31,7 @@ class UserInput(Base):
         rating = Column(Float, unique=False, nullable=False)
 
         def __repr__(self):
-          rating_repr = "<UserInput(id='%s', movie=%s,rating=%d)>"
+          rating_repr = "<UserInput(id='%s', movie=%s,rating=%f)>"
           return rating_repr % (self.id, self.movie,self.rating)
 
 class Ratings(Base):

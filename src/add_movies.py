@@ -6,7 +6,7 @@ import yaml
 import os
 
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, MetaData
+from sqlalchemy import Column, Integer, String, MetaData, Float
 from sqlalchemy.orm import sessionmaker
 
 from src.helpers.helpers import create_connection, get_session
@@ -23,7 +23,7 @@ class UserInput(Base):
         __tablename__ = 'userinput'
         id = Column(Integer, primary_key=True)
         movie = Column(String(100), unique=False, nullable=False)
-        rating = Column(Integer, unique=False, nullable=False)
+        rating = Column(Float, unique=False, nullable=False)
 
         def __repr__(self):
           rating_repr = "<UserInput(id='%s', movie=%s,rating=%d)>"

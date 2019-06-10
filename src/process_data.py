@@ -54,6 +54,8 @@ def procuserinput(movies,ratings,engine_string=SQLALCHEMY_DATABASE_URI):
 		df2: dataframe with new user id, movieid and rating."""
 
 	df = getuserinput(engine_string)
+	df['movie'] = df['movie'].str.lower()
+	movies['title'] = movies['title'].str.lower()
 	# merging to find movieids
 	df2 = df.merge(movies,left_on='movie',right_on='title',how='left')
 	# removes any movies not in database

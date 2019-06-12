@@ -42,8 +42,8 @@ SQLALCHEMY_ECHO = False  # If true, SQL for queries made will be printed
 DEBUG = True
 PORT = 9033
 #local database
-#SQLALCHEMY_DATABASE_URI = 'sqlite:///data/msia423.db'
-SQLALCHEMY_TRACK_MODIFICATIONS = True
+LOC_SQLALCHEMY_DATABASE_URI = 'sqlite:///data/msia423.db'
+#SQLALCHEMY_TRACK_MODIFICATIONS = True
 HOST = "127.0.0.1"
 BUCKET_NAME = 'downloaddata'
 

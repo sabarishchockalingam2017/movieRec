@@ -3,10 +3,10 @@ import logging.config
 logging.config.fileConfig("config/logging/local.conf")
 logger = logging.getLogger("movierec")
 
-#from src.dlmovdata import load_data
+from src.dlmovdata import load_data
 from src.model import create_sqlite_db, create_db
-from config import BUCKET_NAME, SQLALCHEMY_DATABASE_URI, DATABASE_NAME, UPLOAD_BUCKET
-from src.dlmovdata import download_data, load_data
+from config import BUCKET_NAME, LOC_SQLALCHEMY_DATABASE_URI, SQLALCHEMY_DATABASE_URI, DATABASE_NAME, UPLOAD_BUCKET, DOWNLOAD_BUCKET
+from src.dlmovdata import download_data, load_data, load_S3toS3
 from app.app import app
 
 
@@ -26,8 +26,13 @@ if __name__ == '__main__':
     sub_process.add_argument("--bucket", type=str, default=UPLOAD_BUCKET, help="Bucket to be copied to")
     sub_process.set_defaults(func=load_data)
 
+    # sub_process = subparsers.add_parser('loadS3toS3')
+    # sub_process.add_argument("--source", type=str, default=DOWNLOAD_BUCKET, help="Source Bucket to copy from")
+    # sub_process.add_argument("--target", type=str, default=UPLOAD_BUCKET, help="Target Bucket to copy to")
+    # sub_process.set_defaults(func=load_S3toS3)
+
     sub_process = subparsers.add_parser('createSqlite')
-    sub_process.add_argument("--engine_string", type=str, default=SQLALCHEMY_DATABASE_URI,
+    sub_process.add_argument("--engine_string", type=str, default=LOC_SQLALCHEMY_DATABASE_URI,
                              help="Connection uri for SQLALCHEMY")
     sub_process.set_defaults(func=create_sqlite_db)
 

@@ -227,6 +227,9 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/tracks.db'  # URI for database that co
  
  `python run.py createSqlite`
 
+ To use the local database change the SQLALCHEMY_DATABASE_URI variable in both config.py (in the home directory) and flask_config.py (in config folder) to the following:
+ `SQLALCHEMY_DATABASE_URI = 'sqlite:///data/msia423.db'`
+ 
 ### 4. Download and upload data
 
  To download data into the data folder run:
@@ -239,13 +242,19 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/tracks.db'  # URI for database that co
  
 ### 5. Run the application 
  
+After loading the data to your S3 bucket, type the following command to create a python environment and run the app.
  ```bash
- python app.py 
+ make app
  ```
-
+ 
+ To just run the app, use the following command:
+ ```bash
+ python run.py app 
+ ```
+ 
 ### 6. Interact with the application 
 
-Go to [http://127.0.0.1:3000/]( http://127.0.0.1:3000/) to interact with the current version of hte app. 
+Go to http://<your-ip-address>:3000/ to interact with the current version of the app. 
 
 ## Testing 
 

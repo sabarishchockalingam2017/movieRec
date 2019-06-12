@@ -1,6 +1,6 @@
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, MetaData, DateTime
+from sqlalchemy import Column, Integer, String, MetaData, DateTime, Float
 import sqlalchemy
 
 import logging
@@ -22,6 +22,17 @@ logging.config.fileConfig(config.LOGGING_CONFIG)
 logger = logging.getLogger('movierec-models')
 
 Base = declarative_base()
+
+class UserInput(Base):
+        """A database model to hold user inputs """
+        __tablename__ = 'userinput'
+        id = Column(Integer, primary_key=True)
+        movie = Column(String(100), unique=False, nullable=False)
+        rating = Column(Float, unique=False, nullable=False)
+
+        def __repr__(self):
+          rating_repr = "<UserInput(id='%s', movie=%s,rating=%f)>"
+          return rating_repr % (self.id, self.movie,self.rating)
 
 class Ratings(Base):
         """A database model to hold ratings """

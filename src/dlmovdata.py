@@ -36,7 +36,7 @@ def download_data(args):
 
 
 def load_data(args):
-	'''Uploads downloaded data to specified AWS S# bucket'''
+	'''Uploads downloaded data to specified AWS S# bucket from local data'''
 
 	moviesfile = os.path.join("..","data",config.EXTRACT_FOLDER,"movies.csv")
 	ratingsfile = os.path.join("..","data",config.EXTRACT_FOLDER,"ratings.csv")
@@ -55,3 +55,15 @@ def load_data(args):
 	except Exception as e:
 	  logging.error(e)
 	logger.info("S3 Upload Complete.")    
+
+def load_S3toS3(args):
+	""" Take files in source S3 bucket and put in S3 targetbkt"""
+
+	s3 = boto3.resource('s3')
+	copy_source = {
+	      'Bucket': args.source,
+	      'Key': 'ml-data'
+	    }
+	bucket = s3.Bucket(args.target)
+	bucket.copy(copy_source, 'ml-data')
+

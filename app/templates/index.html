@@ -7,37 +7,47 @@
 
 <body>
     <h3>
-         <a href = "{{ url_for('index') }}">Penny Lane Music Recommender</a>
+         <a href = "{{ url_for('index') }}">Movie Recommender</a>
     </h3>
 
     <hr/>
     <table>
          <thead>
             <tr>
-               <th>Title</th>
-               <th>Artist</th>
-               <th>Album</th>
+               <th>Movie</th>
+               <th>Rating</th>
             </tr>
          </thead>
 
          <tbody>
-            {% for track in tracks %}
+            {% for input in userinput %}
                <tr>
-                   <td>{{ track.title }}</td>
-                   <td>{{ track.artist }}</td>
-                   <td>{{ track.album }}</td>
+                   <td>{{ input.movie }}</td>
+                   <td>{{ input.rating }}</td>
                </tr>
             {% endfor %}
+            <tr>
+              <td>{{usermessage}}</td>
+            </tr>
          </tbody>
       </table>
-      <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <form action="{{ url_for('submit_entry') }}" method=post class=submit-entry>
+      <div> Enter some movies you've seen and what you would rate them </div>
       <dl>
-        <input type=text size=15 name=title placeholder="Title">
-        <input type=text size=15 name=artist placeholder="Artist">
-        <input type=text size=15 name=album placeholder="Album">
-        <input type=submit value=Add>
+        <input type=text size=15 name=movie placeholder="Movie">
+        <input type=number size=15 name=rating step=any placeholder="Enter Rating 0-5">
+        <input type=submit name=submitbtn value=Add>
+      </dl>
+      <dl>
+        <input type=submit name=submitbtn value=Reset>
+        <input type=submit name=submitbtn value=GetRecommendation>
       </dl>
     </form>
-
+    <div>
+      {% for table in tables %}
+                  {{titles[loop.index]}}
+                  {{ table|safe }}
+      {% endfor %}
+    </div>
 </body>
 </html>

@@ -1,0 +1,8 @@
+model:
+  name: movie-recommender
+  author: Sabarish Chockalingam
+  version: AA1
+  description:
+  tags:
+    - recsystem
+  dependencies: requirements.txt

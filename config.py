@@ -35,7 +35,8 @@ host = os.environ.get("MYSQL_HOST")
 port = os.environ.get("MYSQL_PORT")
 engine_string = "{}://{}:{}@{}:{}/{}". \
   format(conn_type, user, password, host, port, DATABASE_NAME)
-SQLALCHEMY_DATABASE_URI = engine_string
+#SQLALCHEMY_DATABASE_URI = engine_string
+SQLALCHEMY_DATABASE_URI = 'sqlite:///data/msia423.db'
 SQLALCHEMY_MODIFICATIONS = True
 SQLALCHEMY_ECHO = False  # If true, SQL for queries made will be printed
 

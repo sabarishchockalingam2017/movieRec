@@ -14,8 +14,8 @@ port = os.environ.get("MYSQL_PORT")
 engine_string = "{}://{}:{}@{}:{}/{}". \
   format(conn_type, user, password, host, port, DATABASE_NAME)
 
-#SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/msia423.db'
-SQLALCHEMY_DATABASE_URI = engine_string
+SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/msia423.db'
+#SQLALCHEMY_DATABASE_URI = engine_string
 
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 HOST = "0.0.0.0"

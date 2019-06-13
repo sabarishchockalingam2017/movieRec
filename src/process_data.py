@@ -32,10 +32,10 @@ def procmovies(movies):
 	movies.title = movies.title.str[:-7] 
 	return movies
 
-def getuserinput(engine_string=SQLALCHEMY_DATABASE_URI):
+def getuserinput(engine_string=SQLALCHEMY_DATABASE_URI,tablename="userinput"):
 	'''Gets user input from AWS RDS. Inputs are movies and ratings.'''
 
-	query = "SELECT * FROM userinput"
+	query = "SELECT * FROM " + tablename
 
 	engine = sql.create_engine(engine_string)
 	df = pd.read_sql(query,con=engine)

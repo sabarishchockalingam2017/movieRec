@@ -65,10 +65,9 @@ def submit_entry():
             userinput1 = UserInput(movie=request.form['movie'], rating=request.form['rating'])
             db.session.add(userinput1)
             db.session.commit()
-            logger.info("Movi
-                e: %s added, rated %s", request.form['movie'], request.form['rating'])
+            logger.info("Movie: %s added, rated %s", request.form['movie'], request.form['rating'])
             return redirect(url_for('index'))
-        except:-
+        except:
             logger.warning("Not able to display movies, error page returned")
             return render_template('error.html')
     # user resetting input

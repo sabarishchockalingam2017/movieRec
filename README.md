@@ -251,7 +251,7 @@ After loading the data to your S3 bucket, type the following command to create a
  ```bash
  python run.py app 
  ```
- 
+  Visual studio C++ 2015 and above is needed to run the scikit-surprise package required to run the app.
 ### 6. Interact with the application 
 
 Go to http://<your-ip-address>:3000/ to interact with the current version of the app. 
